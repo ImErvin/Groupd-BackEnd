@@ -12,7 +12,18 @@ app.use(cors());
 var port = process.env.PORT || 8080;
 
 var mongoose = require("mongoose");
-mongoose.createConnection('mongodb://localhost:27017/groupd');
+
+//mongoose.createConnection('mongodb://localhost:27017/testDb');
+
+// Ran into a problem above.. mongo queries left hanging because I used the createConnection function
+// rather than the connect function. Adapated from : http://stackoverflow.com/questions/27331447/mongoose-find-method-causes-requests-to-hang
+mongoose.connect('mongodb://localhost/testDb', function(error) {
+    if (error) {
+        console.err(error);
+    } else {
+        console.log('Connected');
+    }    
+});
 
 var User = require('./models/User');
 var Project = require('./models/Project');
@@ -40,9 +51,32 @@ router.get('/', function(request, response) {
 router.route('/users')
 .post(function(request, response){
     console.log("Trying to add a new user!");
+    var user = new User({
+        email: request.body.email,
+        username: request.body.username,
+        password: request.body.password,
+        firstName: request.body.firstName,
+        surname: request.body.surname,
+        bio: request.body.bio
+    });
+
+    console.log(user.email + " " + user.username + " " + user.password + " " + user.firstName + " " + user.surname + " " + user.bio + " ");
+
+    user.save(function(error){
+        if(error) return response.send(error);
+        
+        response.json({message : "Saved"});
+    });
+
 })
 .get(function(request, response){
     console.log("Trying to show all users");
+
+    User.find(function(error, users) {
+            if (error) return response.send(error);
+
+            response.json(users);
+        });
 });
 
 // /api/users/:username
@@ -61,7 +95,7 @@ router.route('/projects')
 
 router.route('/projects/:projectId')
 .get(function(request, response){
-    console.log("Showing project with projectId: "+ request.body.username);
+    console.log("Showing project with projectId: "+ request.body.projectId);
 });
 
 //------------------------------------------------------- API ROUTES

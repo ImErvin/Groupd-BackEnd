@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-mongoose.createConnection('mongodb://127.0.0.1:27017/groupdDB');
+mongoose.createConnection('mongodb://localhost/testDb');
 
 var UserSchema = new mongoose.Schema({
     email: String,
@@ -11,4 +11,4 @@ var UserSchema = new mongoose.Schema({
     bio: String,
 });
 
-var User = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('User', UserSchema);

@@ -1,9 +1,8 @@
 var mongoose = require('mongoose');
 
-mongoose.createConnection('mongodb://127.0.0.1:27017/groupdDB');
+mongoose.createConnection('mongodb://localhost/testDb');
 
 var User = require('./User');
-
 
 var ProjectSchema = new mongoose.Schema({
     projectId: String,
@@ -15,4 +14,4 @@ var ProjectSchema = new mongoose.Schema({
     projectCreatedDate: { type: Date },
 });
 
-var User = mongoose.model('Project', ProjectSchema);
+module.exports = mongoose.model('Project', ProjectSchema);
