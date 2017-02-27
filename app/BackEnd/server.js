@@ -50,7 +50,9 @@ router.get('/', function(request, response) {
 // /api/users
 router.route('/users')
 .post(function(request, response){
-    console.log("Trying to add a new user!");
+    console.log("Trying to add a new user..");
+
+    // Fill the constructor model User with incoming JSON data from request.
     var user = new User({
         email: request.body.email,
         username: request.body.username,
@@ -60,14 +62,25 @@ router.route('/users')
         bio: request.body.bio
     });
 
-    console.log(user.email + " " + user.username + " " + user.password + " " + user.firstName + " " + user.surname + " " + user.bio + " ");
+    //console.log(user.email + " " + user.username + " " + user.password + " " + user.firstName + " " + user.surname + " " + user.bio + " ");
 
-    user.save(function(error){
-        if(error) return response.send(error);
+    // Will check if a username is unique in the database
+    // Adapted from: http://stackoverflow.com/questions/16882938/how-to-check-if-that-data-already-exist-in-the-database-during-update-mongoose
+    User.find({username: user.username}, function(error, userdoc){
+        if (error) return response.send(error);
         
-        response.json({message : "Saved"});
+        if(!userdoc.length){
+            // Use mongooses .save to add the user to the database
+            user.save(function(error){
+                //If there is an error, send the error message to the requester
+                if(error) return response.send(error);
+                
+                response.json({message : "Saved"});
+            });
+        }else{
+            response.json({message: "Username already exists"});
+        }
     });
-
 })
 .get(function(request, response){
     console.log("Trying to show all users");
@@ -76,13 +89,20 @@ router.route('/users')
             if (error) return response.send(error);
 
             response.json(users);
-        });
+    });
 });
 
 // /api/users/:username
 router.route('/users/:username')
 .get(function(request, response){
-    console.log("Showing user with username: "+ request.body.username);
+    console.log("Showing user with username: " + request.params.username);
+
+    User.find({username: request.params.username}, function(error, user){
+        if (error) return response.send(error);
+
+        response.json(user);
+    })
+    
 });
 
 router.route('/projects')
