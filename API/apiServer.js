@@ -45,6 +45,7 @@ router.get('/', function(request, response) {
     response.json({ message: 'Welcome to Groupd API'});   
 });
 
+
 // API ROUTES------------------------------------------------------
 
 // /api/users

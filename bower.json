@@ -1,6 +1,7 @@
 {
   "name": "groupd",
   "version": "1.0.0",
+  "directory" : "app/FrontEnd/bower_components",
   "dependencies": {
     "angular": "^1.4.0",
     "bootstrap": "^4.0.0-alpha.6",

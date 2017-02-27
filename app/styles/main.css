@@ -1,0 +1,27 @@
+.headerJumbotron{
+  padding-top: 100px;
+  height: 100vh;
+  background-color: #cccccc;
+  margin-bottom: 0px !important;
+}
+
+.indexBody{
+  background-color: #cccccc !important;
+}
+
+.navColor{
+  background-color: white !important;
+  border-bottom: 5px solid #a6a6a6;
+}
+
+.header-button{
+    background-color: #1f1f1f;
+    color: white;
+}
+.header-button:hover{
+    background-color: #DF0F25;
+    color: white;
+}
+.welcome{
+  font-family: Ubuntu;
+}
