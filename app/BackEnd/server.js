@@ -15,6 +15,8 @@ var mongoose = require("mongoose");
 mongoose.createConnection('mongodb://localhost:27017/groupd');
 
 var User = require('./models/User');
+var Project = require('./models/Project');
+
 
 var router = express.Router();
 // ------ Wiring up modules and DB and setting up the router
@@ -48,6 +50,20 @@ router.route('/users/:username')
 .get(function(request, response){
     console.log("Showing user with username: "+ request.body.username);
 });
+
+router.route('/projects')
+.post(function(request, response){
+    console.log("Trying to add a new project!");
+})
+.get(function(request, response){
+    console.log("Trying to show all projects");
+});
+
+router.route('/projects/:projectId')
+.get(function(request, response){
+    console.log("Showing project with projectId: "+ request.body.username);
+});
+
 //------------------------------------------------------- API ROUTES
 
 //Will prefix '/api' to all requests: used for convention.
