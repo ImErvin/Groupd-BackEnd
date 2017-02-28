@@ -4,6 +4,7 @@ var cors = require("cors");
 var app = express();
 var bodyParser = require("body-parser");
 
+// Ability to parse json and send json
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -25,6 +26,7 @@ mongoose.connect('mongodb://localhost/testDb', function(error) {
     }    
 });
 
+// Use the mongoDb schemas from the models folder.
 var User = require('./models/User');
 var Project = require('./models/Project');
 
@@ -83,9 +85,11 @@ router.route('/users')
         }
     });
 })
+// Get function returns all the users in the database
 .get(function(request, response){
     console.log("Trying to show all users");
 
+    // MongoDb find will return all the users in the database
     User.find(function(error, users) {
             if (error) return response.send(error);
 
@@ -95,11 +99,18 @@ router.route('/users')
 
 // /api/users/:username
 router.route('/users/:username')
+// Get function returns the user with the username :username
 .get(function(request, response){
     console.log("Showing user with username: " + request.params.username);
 
-    User.find({username: request.params.username}, function(error, user){
+    // mongoDB findone will find the user with the paramenter passed in the urlencoded
+    // If it doesn't find a user, it will return a message with User does not exist
+    User.findOne({username: request.params.username}, function(error, user){
         if (error) return response.send(error);
+
+        if(!user){
+            response.json({message : "User with username: '" + request.params.username + "' does not exist"});
+        }        
 
         response.json(user);
     })
