@@ -110,10 +110,10 @@ router.route('/users/:username')
         if (error) return response.send(error);
 
         if(!user){
-            response.json({message : "User with username: '" + request.params.username + "' does not exist"});
+            response.json({message : "404"});
+        }else{
+            response.json(user);
         }        
-
-        response.json(user);
     })
     
 });
