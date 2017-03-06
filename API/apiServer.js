@@ -120,9 +120,30 @@ router.route('/users/:username')
 router.route('/projects')
 .post(function(request, response){
     console.log("Trying to add a new project!");
+
+    var project = new Project({
+        projectId: request.body.projectId,
+        projectName: request.body.projectName,
+        projectDesc: request.body.projectDesc
+        /*projectMembers: request.body.projectMembers,
+        projectDelete: request.body.projectDelete,
+        projectCompleted: request.body.projectCompleted,
+        projectCreatedDate: request.body.projectCreatedDate*/
+    });
+
+    project.save(function(error){
+        if(error) return response.send(error);
+
+        response.json({message : "Project Added"});
+    });
+
 })
 .get(function(request, response){
-    console.log("Trying to show all projects");
+    Project.find(function(error, projects){
+        if(error) return response.json(error);
+
+        response.json(projects);
+    })
 });
 
 router.route('/projects/:projectId')
