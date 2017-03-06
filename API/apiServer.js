@@ -62,6 +62,7 @@ router.route('/users')
         password: request.body.password,
         firstName: request.body.firstName,
         surname: request.body.surname,
+        job: request.body.job,
         bio: request.body.bio
     });
 
