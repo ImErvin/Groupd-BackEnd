@@ -12,7 +12,21 @@ var UserSchema = new mongoose.Schema({
     skills: [String],
     bio: String,
     occupation: String,
-	rating: String,
+	rating: {
+		username: String,
+		rating: 
+			{
+				sum_of_rates: int,
+				rate_count: int
+			},
+		ratedby: 
+		[
+			{
+				username: String,
+				rate: int 
+			}
+		]
+	},
 	bookmarks: [ String ],
 	projects: [ String ]
 });
