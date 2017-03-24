@@ -10,8 +10,11 @@ var UserSchema = new mongoose.Schema({
     surname: String,
     address: String,
     skills: [String],
-    job: String,
     bio: String,
+    occupation: String,
+	rating: String,
+	bookmarks: [ String ],
+	projects: [ String ]
 });
 
 module.exports = mongoose.model('User', UserSchema);
