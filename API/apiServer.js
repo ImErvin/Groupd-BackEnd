@@ -65,7 +65,7 @@ router.route('/users')
         address: request.body.address,     
         skills: request.body.skills,
         bio: request.body.bio,
-        occupation: request.body.job,
+        occupation: request.body.occupation,
         ratings: request.body.ratings,
         bookmarks: request.body.bookmarks,
 	    projects: request.body.projects        
@@ -140,11 +140,15 @@ router.route('/projects')
     var project = new Project({
         projectId: generateProjectId(),
         projectName: request.body.projectName,
-        projectDesc: request.body.projectDesc,
+        projectThumb: request.body.projectThumb,
         /*projectMembers: request.body.projectMembers,*/
+        projectCreator: request.body.projectCreator,
+        projectMembers: request.body.projectMembers,
         projectDelete: request.body.projectDelete,
-        projectCompleted: request.body.projectCompleted,
-        projectCreatedDate: request.body.projectCreatedDate
+        maxMembers: request.body.maxMembers,
+        projectDesc: request.body.projectDesc,
+        comments: request.body.comments,
+        time: request.body.time
     });
     
     function createProject(project){
