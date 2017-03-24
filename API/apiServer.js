@@ -136,12 +136,11 @@ router.route('/projects')
         }
         return text;
     }
-
+    // Assign the request JSON data to the aprropriate Project variables.
     var project = new Project({
         projectId: generateProjectId(),
         projectName: request.body.projectName,
         projectThumb: request.body.projectThumb,
-        /*projectMembers: request.body.projectMembers,*/
         projectCreator: request.body.projectCreator,
         projectMembers: request.body.projectMembers,
         projectDelete: request.body.projectDelete,
@@ -150,12 +149,13 @@ router.route('/projects')
         comments: request.body.comments,
         time: request.body.time
     });
-    
+    // Then try to add the project to the database.
     function createProject(project){
         console.log(project.projectId);
+        // Check if projectId already exists in the database.
+        // If the projectID does exist, the createProject function will be called again.
         Project.find({projectId: project.projectId}, function(error, userdoc){
             if (error) return response.send(error);
-            
             if(!userdoc.length){
                 // Use mongooses .save to add the project to the database
                 project.save(function(error){
