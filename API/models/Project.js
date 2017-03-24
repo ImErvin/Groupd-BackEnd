@@ -9,9 +9,10 @@ var ProjectSchema = new mongoose.Schema({
     projectName: String,
     projectDesc: String,
     /*projectMembers: [{type: mongoose.Schema.Types.ObjectId, ref: "User"}],
+    */
     projectDelete: Boolean,
     projectCompleted: Boolean,
-    projectCreatedDate: { type: Date },*/
+    projectCreatedDate: { type: Date },
 });
 
 module.exports = mongoose.model('Project', ProjectSchema);

@@ -94,7 +94,7 @@ router.route('/users')
     User.find(function(error, users) {
             if (error) return response.send(error);
 
-            response.json(users);
+            return response.json(users);
     });
 });
 
@@ -113,7 +113,7 @@ router.route('/users/:username')
             response.json({message : "404"});
         }else{
             response.json(user);
-        }        
+        }           
     })
     
 });
@@ -122,22 +122,47 @@ router.route('/projects')
 .post(function(request, response){
     console.log("Trying to add a new project!");
 
+    function generateProjectId(){
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        for (var i = 0; i < 10; i++){
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        }
+        return text;
+    }
+
     var project = new Project({
-        projectId: request.body.projectId,
+        projectId: generateProjectId(),
         projectName: request.body.projectName,
-        projectDesc: request.body.projectDesc
-        /*projectMembers: request.body.projectMembers,
+        projectDesc: request.body.projectDesc,
+        /*projectMembers: request.body.projectMembers,*/
         projectDelete: request.body.projectDelete,
         projectCompleted: request.body.projectCompleted,
-        projectCreatedDate: request.body.projectCreatedDate*/
+        projectCreatedDate: request.body.projectCreatedDate
     });
+    
+    function createProject(project){
+        console.log(project.projectId);
+        Project.find({projectId: project.projectId}, function(error, userdoc){
+            if (error) return response.send(error);
+            
+            if(!userdoc.length){
+                // Use mongooses .save to add the project to the database
+                project.save(function(error){
+                    if(error) return response.send(error);
+                    console.log(project);
+                    response.json({message : "Project Added"});
+                });
+            }else{
+                console.log("Else");
+                project.projectId = generateProjectId();
+                createProject(project);
+            }
+       });
+    }
 
-    project.save(function(error){
-        if(error) return response.send(error);
-
-        response.json({message : "Project Added"});
-    });
-
+    createProject(project);
 })
 .get(function(request, response){
     Project.find(function(error, projects){
@@ -154,7 +179,7 @@ router.route('/projects/:projectId')
 
 //------------------------------------------------------- API ROUTES
 
-//Will prefix '/api' to all requests: used for convention.
+// Will prefix '/api' to all requests: used for convention.
 app.use('/api', router);
 
 //Server will listen on port 8080 for requests
