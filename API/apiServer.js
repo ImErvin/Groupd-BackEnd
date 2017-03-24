@@ -62,8 +62,13 @@ router.route('/users')
         password: request.body.password,
         firstName: request.body.firstName,
         surname: request.body.surname,
-        job: request.body.job,
-        bio: request.body.bio
+        address: request.body.address,     
+        skills: request.body.skills,
+        bio: request.body.bio,
+        occupation: request.body.job,
+        ratings: request.body.ratings,
+        bookmarks: request.body.bookmarks,
+	    projects: request.body.projects        
     });
 
     //console.log(user.email + " " + user.username + " " + user.password + " " + user.firstName + " " + user.surname + " " + user.bio + " ");
