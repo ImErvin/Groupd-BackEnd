@@ -15,14 +15,14 @@ var UserSchema = new mongoose.Schema({
 	ratings: {
 		rating: 
 			{
-				sum_of_rates: int,
-				rate_count: int
+				sum_of_rates: Number,
+				rate_count: Number
 			},
 		ratedby: 
 		[
 			{
 				username: String,
-				rate: int 
+				rate: Number 
 			}
 		]
 	},

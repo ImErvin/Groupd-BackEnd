@@ -10,7 +10,7 @@ var ProjectSchema = new mongoose.Schema({
     projectThumb: String,
     projectCreator: String,
     projectMembers: [String],
-    maxMembers: int,
+    maxMembers: Number,
     projectDesc: String,
     comments: String,
     /*projectMembers: [{type: mongoose.Schema.Types.ObjectId, ref: "User"}],

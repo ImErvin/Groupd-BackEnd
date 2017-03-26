@@ -50,6 +50,21 @@ router.get('/', function(request, response) {
 
 // API ROUTES------------------------------------------------------
 
+// Create a route that creates an auth token, recieve parameter (rememberMe), if true, set expiration to 30 days
+// Else set expiration to 1 day.
+
+router.route('/token')
+.post(function(request, response){
+    userToken = request.body.token;
+
+    reponse.json({message: "Token saved"});
+})
+.get(function(request, response){
+    
+    response.json({userToken: userToken});
+})
+
+
 // /api/users
 router.route('/users')
 .post(function(request, response){
