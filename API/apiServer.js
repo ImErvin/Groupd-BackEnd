@@ -198,9 +198,21 @@ router.route('/projects')
 
 router.route('/projects/:projectId')
 .get(function(request, response){
-    console.log("Showing project with projectId: "+ request.body.projectId);
-});
+    console.log("Showing project with projectId: " + request.params.projectId);
 
+    // mongoDB findone will find the user with the paramenter passed in the urlencoded
+    // If it doesn't find a user, it will return a message with User does not exist
+    Project.findOne({projectId: request.params.projectId}, function(error, project){
+        if (error) return response.send(error);
+
+        if(!project){
+            response.json({message : "404"});
+        }else{
+            response.json(project);
+        }           
+    })
+    
+});
 //------------------------------------------------------- API ROUTES
 
 // Will prefix '/api' to all requests: used for convention.
