@@ -75,6 +75,7 @@ router.route('/users')
         email: request.body.email,
         username: request.body.username,
         password: request.body.password,
+        gender: request.body.gender,
         firstName: request.body.firstName,
         surname: request.body.surname,
         address: request.body.address,     
@@ -161,6 +162,7 @@ router.route('/projects')
         projectDelete: request.body.projectDelete,
         maxMembers: request.body.maxMembers,
         projectDesc: request.body.projectDesc,
+        tags: request.body.tags,
         comments: request.body.comments,
         time: request.body.time
     });
@@ -191,7 +193,7 @@ router.route('/projects')
 .get(function(request, response){
     Project.find(function(error, projects){
         if(error) return response.json(error);
-
+        
         response.json(projects);
     })
 });
