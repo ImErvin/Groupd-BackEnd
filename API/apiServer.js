@@ -214,6 +214,41 @@ router.route('/projects/:projectId')
         }           
     })
     
+})
+.put(function(request, response){
+
+    Project.findOne({projectId: request.body.projectId}, function(error, project){
+        if (error) return response.send(error);
+        console.log(project);
+        if(!project){
+            response.json({message : "404"});
+        }else{
+            project.projectId = request.body.projectId,
+            project.projectName = request.body.projectName || project.projectName ,
+            project.projectThumb = request.body.projectThumb || project.projectThumb,
+            project.projectCreator = request.body.projectCreator || project.projectCreator,
+            project.projectMembers = request.body.projectMembers || project.projectMembers,
+            project.projectDelete = request.body.projectDelete || project.projectDelete,
+            project.maxMembers = request.body.maxMembers || project.maxMembers,
+            project.projectDesc = request.body.projectDesc || project.projectDesc,
+            project.tags = request.body.tags || project.tags ,
+            project.comments = request.body.comments || project.comments,
+            project.time = request.body.time || project.time
+
+            project.save(function (error, project){
+                if(error) return response.send(error);
+
+                response.send(project);
+            })
+        }
+    })
+})
+.delete(function(request, response){
+    Project.findOneAndRemove({projectId: request.body.projectId}, function(error, project){
+        if (error) return response.send(error);
+
+        response.send({message:"Project Deleted"})
+    })
 });
 //------------------------------------------------------- API ROUTES
 
