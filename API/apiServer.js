@@ -178,7 +178,7 @@ router.route('/projects')
                 project.save(function(error){
                     if(error) return response.send(error);
                     console.log(project);
-                    response.json({message : "Project Added"});
+                    response.json({message : "Project Added", id: project.projectId});
                 });
             }else{
                 console.log("Else");
