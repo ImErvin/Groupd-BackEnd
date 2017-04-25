@@ -12,13 +12,12 @@ var ProjectSchema = new mongoose.Schema({
     projectMembers: [String],
     maxMembers: Number,
     projectDesc: String,
-    comments: String,
     tags: [String],
-    /*projectMembers: [{type: mongoose.Schema.Types.ObjectId, ref: "User"}],
-    
-    tags: [String],
-    projectDelete: Boolean,
-    projectCompleted: Boolean,*/
+    comments: [{
+        username: String,
+        comment: String,
+        time: { type: Date } 
+    }],
     time: { type: Date },
 });
 
