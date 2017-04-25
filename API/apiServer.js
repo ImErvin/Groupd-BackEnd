@@ -136,7 +136,56 @@ router.route('/users/:username')
             response.json(user);
         }           
     })
-    
+})
+
+// Delete request to delete a user document
+.delete(function(request, response){
+
+    console.log("Attempting to edit user with username: " + request.params.username);
+
+    User.findOneAndRemove({username: request.params.username}, function(error, project){
+        // If error finding and removing document, return the error
+        if (error) return response.send(error);
+        // Return success message
+        response.send({message:"User Deleted"})
+    })
+})
+
+// Put request to update a user document
+.put(function(request, response){
+
+    console.log("Attempting to edit user with username: " + request.body.username);
+
+    User.findOne({username:request.body.username}, function(error, user){
+        //If there is an error finding the user, return the error
+        if (error) return response.send(error);
+
+        if(!user){
+            // Return 404 message if user doesn't exist
+            response.json({message : "404"});
+
+        }else{
+            user.email = request.body.email,
+            user.password = request.body.password || user.password,
+            user.gender = request.body.gender || user.gender,
+            user.firstName = request.body.firstName || user.firstName,
+            user.surname = request.body.surname || user.surname,
+            user.address = request.body.address || user.address,     
+            user.skills = request.body.skills || user.skills,
+            user.bio = request.body.bio || user.bio,
+            user.occupation = request.body.occupation || user.occupation,
+            user.ratings = request.body.ratings || user.ratings,
+            user.bookmarks = request.body.bookmarks || user.bookmarks,
+            user.projects = request.body.projects || user.projects
+            // Try save user
+            user.save(function (error, user){
+                // If there is an error saving the updated doc, return the error
+                if(error) return response.send(error);
+                // Send updated document
+                response.send(user);
+            })      
+        }           
+    })
 });
 
 router.route('/projects')
