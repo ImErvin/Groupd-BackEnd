@@ -141,7 +141,7 @@ router.route('/users/:username')
 // Delete request to delete a user document
 .delete(function(request, response){
 
-    console.log("Attempting to edit user with username: " + request.params.username);
+    console.log("Attempting to delete user with username: " + request.params.username);
 
     User.findOneAndRemove({username: request.params.username}, function(error, project){
         // If error finding and removing document, return the error
@@ -293,7 +293,7 @@ router.route('/projects/:projectId')
     })
 })
 .delete(function(request, response){
-    Project.findOneAndRemove({projectId: request.body.projectId}, function(error, project){
+    Project.findOneAndRemove({projectId: request.params.projectId}, function(error, project){
         if (error) return response.send(error);
 
         response.send({message:"Project Deleted"})
