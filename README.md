@@ -25,7 +25,7 @@ Groupd began as a inidivual project by [ImErvin](https://github.com/ImErvin). Er
 
 Upon joining as a group, the team realized that we could add extra features. Together, we designed a new database schema, attached below, and updated the API to correspond with these changes.
 
-![alt text](https://github.com/ImErvin/Groupd-FrontEnd/blob/master/img/Groupd-DB-Design.png "Database Schema")
+![alt text](https://github.com/ImErvin/Groupd-BackEnd/blob/master/img/Groupd-DB-Design.png "Database Schema")
 
 ## Technologies
 
