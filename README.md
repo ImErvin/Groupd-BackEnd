@@ -30,6 +30,25 @@ Upon joining as a group, the team realized that we could add extra features. Tog
 
 ![alt text](https://github.com/ImErvin/Groupd-BackEnd/blob/master/img/Groupd-DB-Design.png "Database Schema")
 
+### The Schemas
+The database holds a two seperate collections, users and projects. These collections are basically an array of objects. These are the schemas for the objects.
+
+#### Users
+The users collection stores user objects containing user details. The front-end applications can create, display, update or delete users from the user collection. Mongoose will set the data fields to null if data fields are not present when storing/updating. Most of the data types are Strings with a few Number data types (any number type). For users, the `username` is the "primary key" used to retrieve users. The integrity of the primary key is set by the front end by not allowing users to create duplicate usernames.
+
+Here is a visual representation of the Schema written in Javascript.
+
+![alt text](http://image.prntscr.com/image/1b59035524af42e7afb36519d000494a.png "User Schema")
+
+#### Project
+The projects collection stores project objects containing project details. The front-end applications can create, dispaly, update or delete projects from the projects collection. Similar to above, empty datafields will be set to null. The project schema holds mostly String data types with the exception of one number and one Date type. For projects, the `projectId` is the "primary key" used to retrieve a project. The integrity of the primary key is set by the POST method for /api/projects by creating a unique `projectId` for each project. 
+
+The team decided that using `_id`, the default id given to objects by the database, was not adequate for testing routes so we decided to create a unique id function.
+
+Here is a visual representation of the Schema written in Javascript.
+
+![alt text](http://image.prntscr.com/image/11b0285ae84748ea93dd76e7e3c40aee.png "Project Schema")
+
 ## Technologies
 
 **ExpressJS**
