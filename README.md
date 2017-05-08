@@ -66,6 +66,7 @@ MongoDB is a NoSQL, open source database that uses a document-oriented data mode
 The team had no experience with using MongoDB in the past and we decided that it would be a great opprotunity to learn such an up and coming database. MongoDB has grown rapidly and is the leading NoSQL database, for this reason we decided it was a good idea to tackle this new technology and see what it's all about!
 
 **Why ExpressJS and Mongoose**
+
 The reason behind using ExpressJS was because [ImErvin](https://github.com/ImErvin) decided to use the MEAN stack as the web stack for the web application and [taraokelly](https://github.com/taraokelly) was goiing to use Angualar2 with Ionic2 which compliments the MEAN stack. Node.js is very fast and efficient for processesing a large amount of requests, and if the application was to scale, node.js would play a great role in allowing it to do so. Express.js is the main framework available for Node.js so it was a no brainer to stick with the popular choice.
 
 Mongoose and ExpressJS were chosen as a pair because together they are known to be a very efficient method of creating RESTful APIs.  A RESTful API holds no state of the requester and simply recieves requests and responds to those requests. A RESTful approach to designing an API is the modern approach and as a team we deicded it would be a challenging task to tackle.
@@ -145,7 +146,7 @@ If successful, then start the server by run the following command:
 node apiServer.js
 ```
 
-Access the API by sending methods to http://127.0.0.1:8080/api/..
+Access the API by sending methods to http://127.0.0.1:8080/api/.. using cURL or other data transfer tools.
 
 ## Conclusion
 
