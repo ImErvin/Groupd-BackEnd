@@ -43,18 +43,21 @@ Mongoose is a way to make connection with MongoDB database. It provides MongoDB 
 
 MongoDB is a NoSQL, open source database that uses a document-oriented data model. Instead of using tables and rows as in relational databases, MongoDB is built on an architecture of collections and documents. Documents comprise sets of key-value pairs and are the basic unit of data in MongoDB.
 
+The team had no experience with using MongoDB in the past and we decided that it would be a great opprotunity to learn such an up and coming database. MongoDB has grown rapidly and is the leading NoSQL database, for this reason we decided it was a good idea to tackle this new technology and see what it's all about!
+
 **Why ExpressJS and Mongoose**
+The reason behind using ExpressJS was because [ImErvin](https://github.com/ImErvin) decided to use the MEAN stack as the web stack for the web application and [taraokelly](https://github.com/taraokelly) was goiing to use Angualar2 with Ionic2 which compliments the MEAN stack. Node.js is very fast and efficient for processesing a large amount of requests, and if the application was to scale, node.js would play a great role in allowing it to do so. Express.js is the main framework available for Node.js so it was a no brainer to stick with the popular choice.
 
-Mongoose and ExpressJS were chosen as, together, they are known to be a very efficient method of creating RESTful APIs.  A RESTful API holds no state of the requester and simply recieves requests and responds to those requests. ExpressJS and Mongoose were chosen because of their synergy and because the application is built using the MEAN stack.
+Mongoose and ExpressJS were chosen as a pair because together they are known to be a very efficient method of creating RESTful APIs.  A RESTful API holds no state of the requester and simply recieves requests and responds to those requests. A RESTful approach to designing an API is the modern approach and as a team we deicded it would be a challenging task to tackle.
 
-The heavy lifting is done by mongoose when working with MongoDB and because of the time limitation, mongoose was the right choice to get a quick and efficient prototype up and running. Combined with Express, it was very fun and interesting to learn and understand why a RESTful approach to HTTP is so popular.
+The heavy lifting is done by mongoose when working with MongoDB and because of the time limitation, mongoose was the right choice to get a quick and efficient prototype up and running. Mongoose and Express have great synergy when it comes to quickly parsing a datbase and responding to server requests and they are both popular and modern technologies.
 
 ## Issues
 
 + Due to time limitations we decided to store the comments in the project document, rather the comments as a seperate document with a reference to it in the project document.
 
 ## The API Routes
-The API is hosted on port 8080 with a prefix '/api'.
+The API is hosted on localhost on port 8080 with a prefix '/api'.
 
 ### Users
 
