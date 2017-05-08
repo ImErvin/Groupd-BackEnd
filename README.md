@@ -8,6 +8,7 @@
 + [Planning](#planning)
 + [Technologies](#technologies)
 + [Issues](#issues)
++ [API Routes](#the-api-routes)
 + [How to Run](#how-to-run)
 + [Conclusion](#conclusion)
 
